@@ -6,13 +6,33 @@
 				<th>name</th>
 				<th><%= user.name %></th>
 			</tr>
-
 			<tr>
 				<th>introduction</th>
 				<th><%= user.introduction %></th>
 			</tr>
+			<tr>
+				<th>フォロー</th>
+				<th>
+					<%= link_to follower_index_path(user.id) do %>
+						<%= user.follower.count %>
+					<% end %>
+				</th>
+			</tr>
+			<tr>
+				<th>フォロワー</th>
+				<th>
+					<%= link_to followed_index_path(user.id) do %>
+						<%= user.followed.count %>
+					<% end %>
+				</th>
+			</tr>
+
 	</table>
 
 	<div class="row">
 		<%= link_to '',edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{user.id}" %>
 	</div>
+
+
+
+

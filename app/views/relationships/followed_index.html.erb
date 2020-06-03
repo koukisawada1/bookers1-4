@@ -1,0 +1,26 @@
+<div class="container">
+	<div class="row">
+		<h2>フォロワー一覧</h2>
+		<table class="table">
+			<% @user.follower_user.each do |follower| %>
+				<tr>
+					<td>
+						<%= link_to user_path(follower.id) do %>
+							<%= attachment_image_tag(follower, :profile_image, size: "100x100", fallback: "no-image-mini.jpg") %>
+						<% end %>
+					</td>
+					<td><%= follower.name %></td>
+					<td>
+						<% if follower != current_user %>
+							<% if current_user.following?(follower) %>
+								<%= link_to 'フォローを外す', unfollow_path(follower.id), method: :post %>
+							<% else %>
+								<%= link_to 'フォローする', follow_path(follower.id), method: :post %>
+							<% end %>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
